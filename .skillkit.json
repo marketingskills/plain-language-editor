@@ -1,0 +1,8 @@
+{
+  "name": "plain-language-editor",
+  "description": "Turn LLM-sounding content into plain, human, low-reading-age copy",
+  "source": "https://github.com/marketingskills/plain-language-editor",
+  "sourceType": "github",
+  "installedAt": "2026-06-25T00:00:00Z",
+  "enabled": true
+}
