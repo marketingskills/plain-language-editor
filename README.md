@@ -28,11 +28,20 @@ The skill edits in a fixed order, two document-level moves first, then five at t
 
 Plus a **plain-word swap table** (utilize → use, facilitate → help), **sentence-rhythm guidance** (~15-20 words, one idea per sentence, active voice), and a hard rule to **never use em dashes**.
 
+## A second pass, after the seven moves
+
+The seven moves run first and do the real work: comprehension, subject/verb clarity, jargon, truth, consistency. Once a draft passes those, the skill runs a second, lighter pass folded in from [no-ai-slop](https://github.com/petergyang/no-ai-slop) to catch the word choices and sentence tics that still read as machine-written:
+
+- **A banned-word list** (delve, leverage, utilize, robust, paradigm shift, tapestry, and 20 more) plus often-empty adverbs and phrases to cut.
+- **Named AI-slop patterns** to strip: binary contrasts, throat-clearing openers, faux-insight setups, colon reveals, superficial `-ing` analysis, importance puffery, weasel attribution, fake-strong verbs, synonym cycling, negative listing, dramatic fragmentation, robotic rhythm, rhetorical setups, fake-profound kickers, summary-recap endings, and formatting slop.
+- **A voice guardrail** that runs alongside this pass: keep the minimum effective edit, and preserve vocabulary, cadence, bluntness, humor, and digressions that are genuinely the writer's, even where they bend a rule above.
+- **Detect mode.** Ask the skill to audit a draft without rewriting it, and it names each pattern found, quotes the line, and gives a short fix.
+
 ## What's inside
 
 | File | Purpose |
 |------|---------|
-| `SKILL.md` | The full skill: the seven moves, word swaps, rhythm rules, process, output format, and a worked example |
+| `SKILL.md` | The full skill: the seven moves, voice preservation, AI-slop patterns, word swaps, rhythm rules, process, output format, and a worked example |
 | `LICENSE` | MIT |
 
 ## Output it gives you
@@ -58,4 +67,4 @@ It pairs well with a humanizer pass: run the humanizer for surface AI vocabulary
 
 ## License
 
-MIT. Use freely, modify, redistribute. A community skill for the marketing skills ecosystem.
+MIT. Use freely, modify, redistribute. A community skill for the marketing skills ecosystem. Voice-preservation and AI-slop-pattern content adapted from [no-ai-slop](https://github.com/petergyang/no-ai-slop) by Peter Yang, also MIT.
