@@ -1,5 +1,9 @@
 # Plain Language Editor
 
+```
+npx skills add marketingskills/plain-language-editor
+```
+
 An open-source AI skill that turns **LLM-sounding content into plain, human, low-reading-age copy** that a smart teenager could follow on the first read. The benchmark is the way Richard Feynman explained hard ideas: the true thing, in the simplest words that still carry the full meaning.
 
 It was built from one piece of real editorial feedback that kept recurring on AI drafts:
