@@ -69,8 +69,8 @@ Test for any sentence: *if I delete this, does the reader lose a fact or an argu
 
 The most common AI failure under the polish is a sentence with no real subject or no real verb. It sounds like English but does not actually say who did what.
 
-- **Demand a subject.** "1.9x more common in NLP than in general ML" — *what* is more common? Rewrite: "Papers in language processing name a data problem nearly twice as often as papers in general machine learning."
-- **Demand a true verb.** Watch for verbs that don't fit their noun. "Data measured across 32,000 papers" — you don't *measure data across* papers. Say what actually happened: "We checked 32,000 papers for whether they mention a data problem."
+- **Demand a subject.** "1.9x more common in NLP than in general ML": *what* is more common? Rewrite: "Papers in language processing name a data problem nearly twice as often as papers in general machine learning."
+- **Demand a true verb.** Watch for verbs that don't fit their noun. "Data measured across 32,000 papers": you don't *measure data across* papers. Say what actually happened: "We checked 32,000 papers for whether they mention a data problem."
 - **No floating nouns.** "62,637 papers across two quarters, classified by an open method." That has no main verb about the papers. Give it one: "We read 62,637 papers from two quarters and sorted each one by hand-checkable rules."
 
 Read each sentence and ask: *Could I draw a stick figure doing this?* Who is the actor, what's the action, what's it done to. If you can't, the sentence is decoration.
@@ -79,9 +79,9 @@ Read each sentence and ask: *Could I draw a stick figure doing this?* Who is the
 
 Every term a reader can't resolve on their own is a small betrayal. Two fixes only: define it in plain words the first time, or replace it with plain words. Never leave it floating.
 
-- **Undefined terms of art.** "frontier AI", "an open method", "the classifier" — if a reader (or even a search engine) can't tell what's in or out, it's not a real term yet. Either pin it down ("by frontier AI we mean papers on large language models, image models, and reinforcement learning") or drop it for plain language.
-- **Verb-shaped jargon.** "papers that name a data constraint" — *which* constraint, and what does "name" mean here? Rewrite: "papers that say they were held back by their training data."
-- **Abbreviations and noun-stacks** ("preference data signal pipeline") — unpack into a sentence.
+- **Undefined terms of art.** "frontier AI", "an open method", "the classifier". If a reader (or even a search engine) can't tell what's in or out, it's not a real term yet. Either pin it down ("by frontier AI we mean papers on large language models, image models, and reinforcement learning") or drop it for plain language.
+- **Verb-shaped jargon.** "papers that name a data constraint": *which* constraint, and what does "name" mean here? Rewrite: "papers that say they were held back by their training data."
+- **Abbreviations and noun-stacks** ("preference data signal pipeline"): unpack into a sentence.
 
 If you find yourself unable to define a term because *you* don't know what it means, that's a finding. Flag it to the user as a question, don't paper over it.
 
@@ -93,15 +93,15 @@ Some AI sentences read like they were written in another language and machine-tr
 - Watch for sentences that sound profound but mean nothing ("The interpretation sits at the intersection of…"). Replace with the plain point or cut.
 - Watch for grey, sensational sub-headings that "sound important but don't mean anything." A heading must carry information.
 
-When a sentence is so broken you can't tell what it was meant to say, **don't guess a meaning into it** — mark it and ask the author.
+When a sentence is so broken you can't tell what it was meant to say, **don't guess a meaning into it**. Mark it and ask the author.
 
 ### 6. Audit every claim: is it true, and does it overclaim?
 
 Plain language is worthless if it's confidently wrong. For each factual statement, ask: *Is this literally true? Could the author defend it?*
 
-- **Overclaims.** "We read every paper posted to arXiv" — almost certainly false (tens of thousands are posted a month). Scale the claim to what was actually done: "We sampled the papers posted in the quarter," or whatever is true.
-- **Vague authority.** "Experts agree", "studies show", "it is widely known" — name the source or drop the claim.
-- **Numbers without an anchor.** "measured across 32,486 papers" — does every one of those papers contain the measurement, or is that just how many were looked at? Make the number say exactly what it counts.
+- **Overclaims.** "We read every paper posted to arXiv": almost certainly false (tens of thousands are posted a month). Scale the claim to what was actually done: "We sampled the papers posted in the quarter," or whatever is true.
+- **Vague authority.** "Experts agree", "studies show", "it is widely known": name the source or drop the claim.
+- **Numbers without an anchor.** "measured across 32,486 papers": does every one of those papers contain the measurement, or is that just how many were looked at? Make the number say exactly what it counts.
 
 When you can't verify a claim, don't smooth it over. List it as a claim to check.
 
@@ -109,7 +109,7 @@ When you can't verify a claim, don't smooth it over. List it as a claim to check
 
 AI drafts often assert something on page 1 and quietly undercut it on page 3. Read the whole thing holding each claim in memory.
 
-- Classic case: "We read 30,000 full papers" early, then "abstracts compress detail" later — which means only abstracts were read. Both can't be true. Decide which is real, fix both places, and state the real method *once, early*.
+- Classic case: "We read 30,000 full papers" early, then "abstracts compress detail" later, which means only abstracts were read. Both can't be true. Decide which is real, fix both places, and state the real method *once, early*.
 - If the method or scope is stated more than once, the statements must match exactly.
 - Surface every contradiction you find to the author rather than silently picking one.
 
@@ -185,7 +185,7 @@ Rule of thumb: if a word has a one-syllable cousin that means the same thing, us
 
 ## Never use em dashes
 
-Do not use em dashes (—) anywhere in the copy. They are one of the loudest signs a language model wrote the text, and humans rarely reach for them. Rewrite every em dash as one of these:
+Do not use em dashes anywhere in the copy. They are one of the loudest signs a language model wrote the text, and humans rarely reach for them. Rewrite every em dash as one of these:
 
 - A full stop, splitting the sentence in two. (Usually the best fix; it shortens sentences, which plain writing wants anyway.)
 - A comma, when the aside is short and belongs in the flow.
@@ -212,12 +212,12 @@ For an edit:
 
 Provide, in this order:
 
-1. **The spine** — one sentence on the main point, then 3-5 dot points. (Or: "I can't find a clear spine; here's the problem.")
-2. **Length call** — current length vs. what it should be, in plain terms.
-3. **The rewrite** — the plain-language version.
-4. **Claims to check** — every statement you couldn't verify or that looked like an overclaim.
-5. **Contradictions found** — anything the document said in two incompatible ways.
-6. **What I cut** — short list of the meta-comments, AI patterns, padding, and sections removed, so nothing vanishes silently. Note if any structural reorganizing happened and why.
+1. **The spine**: one sentence on the main point, then 3-5 dot points. (Or: "I can't find a clear spine; here's the problem.")
+2. **Length call**: current length vs. what it should be, in plain terms.
+3. **The rewrite**: the plain-language version.
+4. **Claims to check**: every statement you couldn't verify or that looked like an overclaim.
+5. **Contradictions found**: anything the document said in two incompatible ways.
+6. **What I cut**: short list of the meta-comments, AI patterns, padding, and sections removed, so nothing vanishes silently. Note if any structural reorganizing happened and why.
 
 For a detect request, skip this format and return the findings report described under Process instead.
 
@@ -246,9 +246,9 @@ For a detect request, skip this format and return the findings report described 
 > Data wins. Papers on language AI complain about their data nearly twice as often as papers in general machine learning. And the rate barely moved across two quarters, so this looks like a steady pattern, not a blip.
 
 **Claims to check:**
-- "every frontier AI paper posted to arXiv" — almost certainly an overclaim; tens of thousands are posted each month. How many papers were actually read? State that number.
+- "every frontier AI paper posted to arXiv": almost certainly an overclaim; tens of thousands are posted each month. How many papers were actually read? State that number.
 - "frontier AI" is undefined and not searchable on arXiv. Which paper categories count (language? vision? reinforcement learning?)? Define it once, early.
-- "62,637 papers… 1.9x" — does the 62,637 figure cover both quarters or one? The rewrite assumes the rate is per-paper; confirm.
+- "62,637 papers… 1.9x": does the 62,637 figure cover both quarters or one? The rewrite assumes the rate is per-paper; confirm.
 
 **Contradictions found:**
 - "we read every frontier AI paper" implies full-text reading. If the method actually used only abstracts, that contradicts the claim and must be fixed in both places. Decide which is true and state it once.
