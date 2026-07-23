@@ -85,6 +85,47 @@ Every term a reader can't resolve on their own is a small betrayal. Two fixes on
 
 If you find yourself unable to define a term because *you* don't know what it means, that's a finding. Flag it to the user as a question, don't paper over it.
 
+### 4a. Translate backstage copy and cut trust theatre
+
+**Backstage copy** exposes the system's internal language instead of explaining the user's situation. It names permissions, sessions, tokens, workflows, processing stages, database objects, security mechanisms, status labels, or administrative states.
+
+Do not name an internal state unless it changes what the user can do or requires a decision from them. If it changes nothing, delete it. If it matters, translate it into a concrete consequence. Name the person, thing, action, and deadline where possible.
+
+Ask four questions:
+
+- What happened?
+- What does it mean for me?
+- Do I need to do anything?
+- What can I do next?
+
+**Before:** Expiring veterinary access
+
+**After:** Dr Patel can view Luna's records until 14 August.
+
+**Before:** Session expires in 15 minutes
+
+**After:** You'll be signed out in 15 minutes. Save your changes.
+
+**Before:** Read-only access scope
+
+**After:** You can view these records, but you can't edit them.
+
+A useful test: would a developer, administrator, or support agent use this phrase more often than the user would? If yes, it probably belongs backstage. The stronger test is whether the phrase answers one of the four user questions above.
+
+**Trust theatre** uses vague labels to ask users to trust the product without giving them a specific, useful, verifiable fact. Cut labels such as "SECURE SESSION", "Protected environment", "Privacy-first", "Bank-level security", "Verified access", and "Encrypted experience" when they make only a general promise.
+
+Keep security or privacy information when it is literally true and helps the user decide what to do or share. State the specific protection, the people involved, and the user's control in plain language. Do not replace one vague assurance with another.
+
+**Before:** SECURE SESSION
+
+**After:** delete it, or explain the relevant action, such as "Sign in to view your pets."
+
+**Before:** Your data is protected
+
+**After, if accurate and relevant:** Only you and the people you invite can view these records.
+
+Security should usually be implemented, then explained when relevant. It should not be announced as a badge.
+
 ### 5. Read every sentence aloud and fix the ones that don't parse
 
 Some AI sentences read like they were written in another language and machine-translated without context. They have the shape of a sentence but break when you actually read them. The only reliable detector is reading aloud.
