@@ -37,6 +37,8 @@ It is not the `humanizer` skill. Humanizer removes AI vocabulary and style tells
 
 Picture one specific person: smart, busy, not an expert in this topic, reading age around 14-15. They will not look words up. They will not re-read a sentence to decode it. If a sentence does not land the first time, they stop reading. Your edits serve that person on every line.
 
+**Naturalness is a separate test from readability.** Simple words and short sentences are not enough if the grammar still mirrors a database, API, software schema, or set of fields. The reader should not have to decode how the source data was structured. Write the way a person would explain the fact aloud.
+
 ## The seven moves
 
 Apply these in order. The first two are about the whole document; the rest are sentence-level.
@@ -125,6 +127,46 @@ Keep security or privacy information when it is literally true and helps the use
 **After, if accurate and relevant:** Only you and the people you invite can view these records.
 
 Security should usually be implemented, then explained when relevant. It should not be announced as a badge.
+
+### 4b. Turn data structures into natural sentences
+
+Programmatic SEO and SaaS copy often starts as database rows, API fields, enums, labels, workflow steps, or feature metadata. **Do not serialize that structure into English. Database structure is not sentence structure.** Recover the underlying fact, then explain it the way a person would.
+
+- **Turn relationships into verbs.** Prefer "Book treatment through the clinic's online portal" to "Treatment booking is handled through a dedicated online booking portal." A relationship stored as fields or links often needs to become a verb or clause in English.
+- **Break up noun piles.** Two nouns together can be normal. Several content nouns packed together usually make the reader decode the relationship: "email, contact-form and Instagram DM enquiry channels" is schema-shaped prose.
+- **Use verbs that naturally fit their nouns.** A clinic can *list*, *offer*, or *use* contact methods. It does not normally *publish enquiry channels*. A sentence can be grammatical and still sound wrong because the verb and noun do not naturally go together.
+- **Do not invent umbrella categories just because the data has a shared field.** Email, a contact form, and Instagram DMs can all be ways to contact a clinic without needing the abstract label "enquiry channels" in the copy.
+- **Make vague prepositions explicit.** Words such as *by*, *via*, *through*, *across*, *with*, and *for* can hide the real relationship. "Compare the coasts by forecast period" makes the reader infer what *by* means. Say "Compare the coasts for each forecast period" if that is the fact.
+- **Give pronouns obvious antecedents.** After charts, lists, or generated data, do not write "these" or "this" when several things could be meant. Repeat the short noun: "The figures are model estimates."
+- **Split contrasts when that is clearer.** If one system does X and another does Y, two short sentences are often more natural than one sentence built around "distinct from" or another abstract relation.
+- **Prefer the user's mental model to the software model.** Explain what the person can do, what happens, what a number means, or what changes. Do not expose internal categories merely because they exist in the source data.
+- **Do not add facts while making the prose natural.** Preserve the exact meaning. If the data proves only that two systems are separate, do not turn that into "for enquiries only" unless the source actually says that.
+
+**Before:**
+> Treatment booking is handled through a dedicated online booking portal, distinct from the email, contact-form and Instagram DM enquiry channels the clinic publishes.
+
+**Better, if the source says the other methods are for enquiries:**
+> Book treatment through the clinic's online portal. For general enquiries, use email, the contact form or Instagram DM.
+
+**Safer, if the source only proves that the booking system is separate:**
+> The clinic has a separate portal for treatment bookings. You can also contact the clinic by email, through its contact form or on Instagram.
+
+**Before:**
+> Compare the coasts by forecast period. These are model estimates, not beach observations.
+
+**After:**
+> Compare the coasts for each forecast period. The figures are model estimates, not measurements taken at the beach.
+
+Before shipping database-backed copy, ask:
+
+1. Would a person actually say this aloud?
+2. Can the reader tell what every pronoun refers to?
+3. Does each main verb naturally go with its subject and object?
+4. Is a relationship hidden inside a noun stack or vague preposition?
+5. Does the sentence mirror the database or API more than the user's mental model?
+6. Did the rewrite preserve the source facts without inventing a purpose, restriction, cause, or relationship?
+
+If the reader has to decode any of those relationships, rewrite the sentence.
 
 ### 5. Read every sentence aloud and fix the ones that don't parse
 
