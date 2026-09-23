@@ -1,5 +1,7 @@
 # Plain Language Editor
 
+> Part of [Marketing Skills](https://marketingskills.net/skills/plain-language-editor/) — open-source marketing operators for AI agents.
+
 ```
 npx skills add marketingskills/plain-language-editor
 ```
