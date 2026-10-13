@@ -1,0 +1,27 @@
+name: Editorial quality
+
+on:
+  pull_request:
+  push:
+    branches: [main]
+
+permissions:
+  contents: read
+
+jobs:
+  test:
+    name: Validate patterns, docs and preflight
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Check generated pattern reference
+        run: node scripts/build-references.mjs --check
+      - name: Run regression tests
+        run: node --test
+      - name: Audit CLI smoke test
+        run: |
+          printf "It's worth noting that this changes everything.\n" | node scripts/audit.mjs --stdin --json > /tmp/editorial.json
+          node -e "const r = require('/tmp/editorial.json'); if (!r.findings.some(f => f.id === 'P-01')) process.exit(1)"
