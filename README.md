@@ -34,21 +34,50 @@ The skill edits in a fixed order, two document-level moves first, then five at t
 
 Plus a **plain-word swap table** (utilize → use, facilitate → help), **sentence-rhythm guidance** (~15-20 words, one idea per sentence, active voice), and a hard rule to **never use em dashes**.
 
-## A second pass, after the seven moves
+## A second pass: systematic, not mechanical
 
-The seven moves run first and do the real work: comprehension, subject/verb clarity, jargon, truth, consistency. Once a draft passes those, the skill runs a second, lighter pass folded in from [no-ai-slop](https://github.com/petergyang/no-ai-slop) to catch the word choices and sentence tics that still read as machine-written:
+After the seven moves, the editor audits against **120 named patterns in nine categories**, adapted from [FeedHive's MIT-licensed AI Slop Detector](https://github.com/FeedHive/ai-slop-detector). Patterns have stable IDs, a description and concrete before/after guidance. The full catalogue is data in [patterns/ai-slop.json](patterns/ai-slop.json); the readable [pattern reference](references/ai-slop-patterns.md) is generated from that source.
 
-- **A banned-word list** (delve, leverage, utilize, robust, paradigm shift, tapestry, and 20 more) plus often-empty adverbs and phrases to cut.
-- **Named AI-slop patterns** to strip: binary contrasts, throat-clearing openers, faux-insight setups, colon reveals, superficial `-ing` analysis, importance puffery, weasel attribution, fake-strong verbs, synonym cycling, negative listing, dramatic fragmentation, robotic rhythm, rhetorical setups, fake-profound kickers, summary-recap endings, and formatting slop.
-- **A voice guardrail** that runs alongside this pass: keep the minimum effective edit, and preserve vocabulary, cadence, bluntness, humor, and digressions that are genuinely the writer's, even where they bend the banned-word or pattern rules above.
-- **Detect mode.** Ask the skill to audit a draft without rewriting it, and it names each pattern found, quotes the line, and gives a short fix.
+The second pass catches chatbot residue, stock phrases, artificial rhythm, LinkedIn formulas, formatting habits and unsupported claims. But it is **not an AI-authorship detector**. An isolated metaphor or rhetorical question is often good writing. The editor prioritises repeated problems and protects the writer's voice and factual precision.
+
+There are two distinct ways to use it:
+
+- **Edit (default):** perform the seven moves first, then improve distracting patterns, return the rewrite and flag any factual uncertainties.
+- **Detect only:** quote exact offending text with pattern IDs, distinguish clear defects from contextual suggestions, and explain fixes without rewriting or assigning a score.
+
+### Optional command-line preflight
+
+The dependency-free Node.js checker finds only a conservative subset of patterns that can be matched safely. It is **not** a replacement for the full 120-pattern editorial audit.
+
+```sh
+node scripts/audit.mjs draft.md
+node scripts/audit.mjs draft.md --json
+cat draft.md | node scripts/audit.mjs --stdin
+```
+
+This reports exact line numbers, excerpts, pattern IDs and clusters of multiple findings in one paragraph. It never estimates whether AI wrote the text.
+
+### Maintaining the catalogue
+
+```sh
+node scripts/build-references.mjs
+node scripts/build-references.mjs --check
+node --test
+```
+
+The generator validates the source data (unique IDs, valid categories and examples). CI checks the generated reference and runs regression tests, including false-positive examples. Source attribution, pinned upstream commit and license live in [patterns/SOURCE.md](patterns/SOURCE.md).
 
 ## What's inside
 
 | File | Purpose |
 |------|---------|
-| `SKILL.md` | The full skill: the seven moves, voice preservation, AI-slop patterns, word swaps, rhythm rules, process, output format, and a worked example |
-| `LICENSE` | MIT |
+| `SKILL.md` | The seven editorial moves, voice protection, when to consult the full reference, edit/detect modes and examples |
+| `patterns/ai-slop.json` | FeedHive's structured, attributed 120-pattern source |
+| `references/ai-slop-patterns.md` | Generated complete editorial checklist |
+| `scripts/build-references.mjs` | Schema validation and reproducible reference generation |
+| `scripts/audit.mjs` | Optional conservative line-level preflight with JSON output |
+| `tests/` and `.github/workflows/quality.yml` | Node regression tests and CI |
+| `LICENSE`, `third_party/FeedHive-LICENSE` | Project and upstream MIT license notices |
 
 ## Output it gives you
 
@@ -73,4 +102,4 @@ It pairs well with a humanizer pass: run the humanizer for surface AI vocabulary
 
 ## License
 
-MIT. Use freely, modify, redistribute. A community skill for the marketing skills ecosystem. Voice-preservation and AI-slop-pattern content adapted from [no-ai-slop](https://github.com/petergyang/no-ai-slop) by Peter Yang, also MIT.
+MIT. Use freely, modify, redistribute. A community skill for the marketing skills ecosystem. Existing voice-preservation guidance drew from [no-ai-slop](https://github.com/petergyang/no-ai-slop) by Peter Yang (MIT). The new 120-pattern catalogue comes from [FeedHive/ai-slop-detector](https://github.com/FeedHive/ai-slop-detector) (MIT); see [its license and provenance](patterns/SOURCE.md).
