@@ -1,0 +1,909 @@
+{
+  "name": "AI Slop Detector",
+  "version": "1.0.0",
+  "categories": [
+    {
+      "id": "vocabulary",
+      "name": "Vocabulary",
+      "intro": "Words that show up far more often in AI output than in human writing. One is a coincidence; three in a paragraph is a pattern.",
+      "patterns": [
+        {
+          "id": "V-01",
+          "name": "Delve and friends",
+          "description": "delve, dive into, deep dive, unpack, explore (for \"discuss\").",
+          "bad": "\"Let's delve into the data.\"",
+          "better": "\"Here is what the data shows.\""
+        },
+        {
+          "id": "V-02",
+          "name": "Tapestry words",
+          "description": "tapestry, landscape, realm, sphere, ecosystem, fabric (used abstractly).",
+          "bad": "\"the ever-evolving landscape of marketing.\"",
+          "better": "\"marketing in 2026\" or name the actual change."
+        },
+        {
+          "id": "V-03",
+          "name": "Testament and beacon",
+          "description": "testament to, beacon of, embodiment of, hallmark of.",
+          "bad": "\"The launch is a testament to the team's dedication.\"",
+          "better": "\"The team shipped it in six weeks.\""
+        },
+        {
+          "id": "V-04",
+          "name": "Pivotal and crucial",
+          "description": "pivotal, crucial, vital, paramount, critical (as decoration).",
+          "bad": "\"plays a pivotal role in growth.\"",
+          "better": "\"drives 40% of signups.\""
+        },
+        {
+          "id": "V-05",
+          "name": "Showcase verbs",
+          "description": "showcase, highlight, underscore, emphasize, spotlight (as commentary verbs).",
+          "bad": "\"The results underscore the importance of testing.\"",
+          "better": "\"Testing caught three bugs before launch.\""
+        },
+        {
+          "id": "V-06",
+          "name": "Foster and cultivate",
+          "description": "foster, cultivate, nurture (applied to abstract things).",
+          "bad": "\"fostering a culture of innovation.\"",
+          "better": "Say what the team actually does."
+        },
+        {
+          "id": "V-07",
+          "name": "Leverage and utilize",
+          "description": "leverage, utilize, harness, capitalize on.",
+          "bad": "\"Leverage AI to streamline your workflow.\"",
+          "better": "\"Use AI to draft the weekly report.\""
+        },
+        {
+          "id": "V-08",
+          "name": "Elevate and enhance",
+          "description": "elevate, enhance, empower, supercharge, unlock, amplify.",
+          "bad": "\"Elevate your content strategy.\"",
+          "better": "Name the result: \"Post three times a week without writing on weekends.\""
+        },
+        {
+          "id": "V-09",
+          "name": "Seamless and robust",
+          "description": "seamless, robust, cutting-edge, state-of-the-art, best-in-class, world-class.",
+          "bad": "\"a seamless, robust solution.\"",
+          "better": "\"it syncs in under a second and hasn't gone down this year.\""
+        },
+        {
+          "id": "V-10",
+          "name": "Intricate and multifaceted",
+          "description": "intricate, multifaceted, nuanced, complex (as filler).",
+          "bad": "\"the intricate interplay of factors.\"",
+          "better": "Name two of the factors."
+        },
+        {
+          "id": "V-11",
+          "name": "Meticulous",
+          "description": "meticulous, meticulously, painstakingly, carefully crafted.",
+          "bad": "\"meticulously crafted templates.\"",
+          "better": "\"templates tested on 200 posts.\""
+        },
+        {
+          "id": "V-12",
+          "name": "Vibrant and rich",
+          "description": "vibrant, rich, bustling, thriving, dynamic.",
+          "bad": "\"a vibrant community of creators.\"",
+          "better": "\"4,000 creators who post weekly.\""
+        },
+        {
+          "id": "V-13",
+          "name": "Journey and embark",
+          "description": "journey, embark, navigate, voyage, path (for ordinary processes).",
+          "bad": "\"embark on your SEO journey.\"",
+          "better": "\"start with your top ten pages.\""
+        },
+        {
+          "id": "V-14",
+          "name": "Game changer",
+          "description": "game changer, revolutionary, groundbreaking, transformative, paradigm shift.",
+          "bad": "\"This feature is a game changer.\"",
+          "better": "Say what changes and for whom."
+        },
+        {
+          "id": "V-15",
+          "name": "Transition adverbs",
+          "description": "Additionally, Furthermore, Moreover, Notably, Importantly (opening sentences).",
+          "bad": "\"Additionally, the tool supports exports.\"",
+          "better": "\"It also exports to CSV.\""
+        },
+        {
+          "id": "V-16",
+          "name": "Empty intensifiers",
+          "description": "truly, incredibly, deeply, profoundly, remarkably, fundamentally.",
+          "bad": "\"a truly remarkable result.\"",
+          "better": "Give the number that makes it remarkable."
+        },
+        {
+          "id": "V-17",
+          "name": "Quietly",
+          "description": "quietly, silently, subtly (adding drama to plain events).",
+          "bad": "\"Costs quietly crept up.\"",
+          "better": "\"Costs rose 12% in March.\""
+        },
+        {
+          "id": "V-18",
+          "name": "Align and resonate",
+          "description": "align with, resonate with, speak to, in line with.",
+          "bad": "\"content that resonates with your audience.\"",
+          "better": "\"posts your audience replies to.\""
+        },
+        {
+          "id": "V-19",
+          "name": "Key as an adjective",
+          "description": "key insight, key takeaway, key factor, key role.",
+          "bad": "\"The key takeaway is consistency.\"",
+          "better": "\"Post on the same days every week.\""
+        },
+        {
+          "id": "V-20",
+          "name": "Era words",
+          "description": "in today's fast-paced world, in the digital age, in an era of, now more than ever.",
+          "bad": "\"In today's fast-paced digital world, content is king.\"",
+          "better": "Cut it and start with the point."
+        }
+      ]
+    },
+    {
+      "id": "stock-phrases",
+      "name": "Stock phrases",
+      "intro": "Ready-made phrases that fill space without adding meaning.",
+      "patterns": [
+        {
+          "id": "P-01",
+          "name": "Worth noting",
+          "description": "it's worth noting, it's important to note, it should be noted.",
+          "bad": "\"It's worth noting that the API is rate limited.\"",
+          "better": "\"The API allows 100 calls a minute.\""
+        },
+        {
+          "id": "P-02",
+          "name": "At its core",
+          "description": "at its core, at the end of the day, when all is said and done, ultimately.",
+          "bad": "\"At its core, marketing is about people.\"",
+          "better": "Delete, or say something specific about people."
+        },
+        {
+          "id": "P-03",
+          "name": "When it comes to",
+          "description": "when it comes to, in terms of, with regard to, in the world of.",
+          "bad": "\"When it comes to scheduling, timing matters.\"",
+          "better": "\"Posts at 9am get more reach than posts at 3pm.\""
+        },
+        {
+          "id": "P-04",
+          "name": "Let's dive in",
+          "description": "let's dive in, let's get started, buckle up, without further ado.",
+          "bad": "\"Ready? Let's dive in!\"",
+          "better": "Start with the first point."
+        },
+        {
+          "id": "P-05",
+          "name": "Plays a role",
+          "description": "plays a role in, contributes to, is a factor in.",
+          "bad": "\"Hashtags play a role in reach.\"",
+          "better": "\"Posts with 3 to 5 hashtags reached more people in our test.\""
+        },
+        {
+          "id": "P-06",
+          "name": "Stands as",
+          "description": "stands as, serves as, functions as, acts as (instead of \"is\").",
+          "bad": "\"The dashboard serves as a central hub.\"",
+          "better": "\"The dashboard shows every scheduled post.\""
+        },
+        {
+          "id": "P-07",
+          "name": "Navigate the complexities",
+          "description": "navigate the complexities of, the ins and outs of, the nuances of.",
+          "bad": "\"helping you navigate the complexities of SEO.\"",
+          "better": "\"explains how Google picks which page to rank.\""
+        },
+        {
+          "id": "P-08",
+          "name": "Whether you're X or Y",
+          "description": "Whether you're a beginner or a pro, from startups to enterprises.",
+          "bad": "\"Whether you're a solo creator or a global brand, ...\"",
+          "better": "Say who it is actually for."
+        },
+        {
+          "id": "P-09",
+          "name": "Look no further",
+          "description": "look no further, you've come to the right place, this is your ultimate guide.",
+          "bad": "\"Looking for a scheduler? Look no further.\"",
+          "better": "\"FeedHive schedules posts to 10 platforms.\""
+        },
+        {
+          "id": "P-10",
+          "name": "Unlock the power",
+          "description": "unlock the power of, harness the potential of, take it to the next level.",
+          "bad": "\"Unlock the full potential of your content.\"",
+          "better": "Say the specific gain."
+        },
+        {
+          "id": "P-11",
+          "name": "Here's the thing",
+          "description": "here's the thing, here's the deal, let me be clear, I'll be honest, I'll be straight with you.",
+          "bad": "\"Here's the thing: most people quit.\"",
+          "better": "\"Most people quit in month two.\""
+        },
+        {
+          "id": "P-12",
+          "name": "The truth is",
+          "description": "the truth is, the reality is, the uncomfortable truth, the hard truth.",
+          "bad": "\"The hard truth is that SEO takes time.\"",
+          "better": "\"SEO takes about six months to show results.\""
+        },
+        {
+          "id": "P-13",
+          "name": "Sign-off clichés",
+          "description": "I hope this helps, happy writing, feel free to reach out, let me know if you have any questions.",
+          "bad": "A post or article ending with \"Hope this helps!\"",
+          "better": "End on the last useful point."
+        },
+        {
+          "id": "P-14",
+          "name": "Summary openers",
+          "description": "In conclusion, In summary, To sum up, Overall, All in all.",
+          "bad": "\"In conclusion, consistency is key.\"",
+          "better": "End on the last concrete point; the reader was just there."
+        },
+        {
+          "id": "P-15",
+          "name": "Vague future",
+          "description": "the future is bright, the possibilities are endless, only time will tell, the sky's the limit.",
+          "bad": "\"With AI, the possibilities are endless.\"",
+          "better": "Name one thing that is now possible."
+        }
+      ]
+    },
+    {
+      "id": "sentence-patterns",
+      "name": "Sentence patterns",
+      "intro": "Constructions that AI reaches for again and again.",
+      "patterns": [
+        {
+          "id": "S-01",
+          "name": "Not X, but Y",
+          "description": "\"It's not X. It's Y.\" / \"This isn't about X, it's about Y.\"",
+          "bad": "\"It's not a tool. It's a teammate.\"",
+          "better": "Say what it does: \"It drafts replies for you to approve.\""
+        },
+        {
+          "id": "S-02",
+          "name": "Not just X, but also Y",
+          "description": "\"It's not just fast, it's also accurate.\"",
+          "bad": "\"Not just a scheduler, but a full content engine.\"",
+          "better": "List what it does."
+        },
+        {
+          "id": "S-03",
+          "name": "The question isn't X",
+          "description": "\"The question isn't whether, it's when.\" / \"The problem isn't X. The problem is Y.\"",
+          "bad": "\"The question isn't if you should use AI. It's how.\"",
+          "better": "\"Here is how we use AI for first drafts.\""
+        },
+        {
+          "id": "S-04",
+          "name": "Negative listing",
+          "description": "\"Not a X. Not a Y. A Z.\"",
+          "bad": "\"Not a plan. Not a hope. A system.\"",
+          "better": "\"A system: three posts a week, written on Mondays.\""
+        },
+        {
+          "id": "S-05",
+          "name": "Rhetorical Q and A",
+          "description": "A question the writer immediately answers.",
+          "bad": "\"Why does this matter? Because reach is everything.\"",
+          "better": "\"Reach decides how many people see the post.\""
+        },
+        {
+          "id": "S-06",
+          "name": "The obvious question",
+          "description": "\"The obvious question is...\", \"You might be wondering...\"",
+          "bad": "\"You might be wondering how this works.\"",
+          "better": "Explain how it works."
+        },
+        {
+          "id": "S-07",
+          "name": "Colon reveal",
+          "description": "A short setup, a colon, then a dramatic reveal.",
+          "bad": "\"The best part: it's free.\"",
+          "better": "\"It's free.\""
+        },
+        {
+          "id": "S-08",
+          "name": "Faux insight",
+          "description": "\"What nobody tells you\", \"the part most people miss\", \"here's what most get wrong\".",
+          "bad": "\"What nobody tells you about growth: distribution beats product.\"",
+          "better": "\"Distribution brought us more users than any feature.\""
+        },
+        {
+          "id": "S-09",
+          "name": "This is where it gets interesting",
+          "description": "this is where it gets interesting, this changes everything, and that's where things get wild.",
+          "bad": "\"And this is where it gets interesting.\"",
+          "better": "State the interesting thing."
+        },
+        {
+          "id": "S-10",
+          "name": "The useful part is",
+          "description": "the useful part, the part where, the best part, the exciting part, the part that stuck with me.",
+          "bad": "\"The useful part is that it connects to your inbox.\"",
+          "better": "\"It connects to your inbox.\""
+        },
+        {
+          "id": "S-11",
+          "name": "X is just Y",
+          "description": "Calling something \"just\" a vivid unrelated thing to make a point.",
+          "bad": "\"Posting without a plan is just gambling with your time.\"",
+          "better": "\"Without a plan you post less and repeat topics.\""
+        },
+        {
+          "id": "S-12",
+          "name": "Trailing -ing analysis",
+          "description": "A sentence ends with an -ing clause that tells you what it means.",
+          "bad": "\"Sales rose 20%, highlighting the strength of the brand.\"",
+          "better": "\"Sales rose 20%.\""
+        },
+        {
+          "id": "S-13",
+          "name": "Rule of three",
+          "description": "Lists of exactly three adjectives or phrases, by reflex.",
+          "bad": "\"fast, simple, and powerful.\"",
+          "better": "Keep the one that is true and provable."
+        },
+        {
+          "id": "S-14",
+          "name": "Synonym cycling",
+          "description": "Rotating names for the same thing to avoid repetition.",
+          "bad": "\"The agent drafts. The assistant reviews. The tool publishes.\"",
+          "better": "\"The agent drafts, reviews and publishes.\""
+        },
+        {
+          "id": "S-15",
+          "name": "Arbitrary \"one\"",
+          "description": "Putting \"one\" before a noun to sound focused when the number means nothing.",
+          "bad": "\"Start with one workflow.\"",
+          "better": "\"Start with your weekly newsletter.\""
+        },
+        {
+          "id": "S-16",
+          "name": "Fake-strong verbs",
+          "description": "boasts, features, offers, maintains (instead of \"has\").",
+          "bad": "\"The app boasts an intuitive interface.\"",
+          "better": "\"The app has a drag-and-drop calendar.\""
+        },
+        {
+          "id": "S-17",
+          "name": "Imagine a world",
+          "description": "imagine a world where, picture this, what if I told you.",
+          "bad": "\"Imagine a world where your posts write themselves.\"",
+          "better": "Describe what the product does today."
+        },
+        {
+          "id": "S-18",
+          "name": "Hedge stacking",
+          "description": "may potentially, could possibly, might help to, can sometimes.",
+          "bad": "\"This may potentially help improve results.\"",
+          "better": "\"This improved reply rate by 8% in our test.\" Or cut it."
+        },
+        {
+          "id": "S-19",
+          "name": "Both-sides filler",
+          "description": "\"While X has benefits, it also has drawbacks.\"",
+          "bad": "\"While automation saves time, it's important to stay authentic.\"",
+          "better": "Take a position and support it."
+        },
+        {
+          "id": "S-20",
+          "name": "From X to Y range",
+          "description": "\"From startups to enterprises\", \"from strategy to execution\".",
+          "bad": "\"From ideation to publication, we've got you covered.\"",
+          "better": "Name the two steps you actually handle."
+        },
+        {
+          "id": "S-21",
+          "name": "Interpretive asides",
+          "description": "Telling the reader how to read the text.",
+          "bad": "\"That last point matters more than it sounds.\"",
+          "better": "Show why it matters, or delete the aside."
+        },
+        {
+          "id": "S-22",
+          "name": "Rhetorical self-correction",
+          "description": "\"Actually, let me rephrase that\", \"Or rather...\"",
+          "bad": "\"It's fast. Or rather, it's instant.\"",
+          "better": "\"It's instant.\""
+        }
+      ]
+    },
+    {
+      "id": "structure-and-rhythm",
+      "name": "Structure and rhythm",
+      "intro": "Slop is often in the shape of the text, not the words.",
+      "patterns": [
+        {
+          "id": "R-01",
+          "name": "One-line paragraph stacks",
+          "description": "Many short lines in a row, each a slogan.",
+          "bad": "\"I quit my job. / I built a product. / Nobody came. / Then I learned this.\"",
+          "better": "Write it as one paragraph."
+        },
+        {
+          "id": "R-02",
+          "name": "Fragment drumbeat",
+          "description": "Strings of fragments for rhythm.",
+          "bad": "\"Code. Content. Customers. Every day.\"",
+          "better": "One full sentence that says what you do every day."
+        },
+        {
+          "id": "R-03",
+          "name": "Repeated starters",
+          "description": "Several lines that start with the same word or phrase.",
+          "bad": "\"It saves time. It saves money. It saves your sanity.\"",
+          "better": "\"It saves about four hours a week.\""
+        },
+        {
+          "id": "R-04",
+          "name": "Identical sentence shapes",
+          "description": "Every sentence the same length and structure.",
+          "bad": "A paragraph of 12-word sentences, each \"Subject verb object, comma, clause.\"",
+          "better": "Vary length when it helps the point."
+        },
+        {
+          "id": "R-05",
+          "name": "List dumps",
+          "description": "Long inventories of nouns in one breath.",
+          "bad": "\"sales, marketing, support, ops, finance, hiring, legal and product.\"",
+          "better": "Pick the two that matter here."
+        },
+        {
+          "id": "R-06",
+          "name": "Bullets for everything",
+          "description": "Bullet points where two sentences of prose would read better.",
+          "bad": "Three bullets of four words each.",
+          "better": "One sentence."
+        },
+        {
+          "id": "R-07",
+          "name": "Headings on tiny sections",
+          "description": "Headers over one or two sentences.",
+          "bad": "\"## Why it matters\" followed by one line.",
+          "better": "Fold it into the paragraph above."
+        },
+        {
+          "id": "R-08",
+          "name": "Recap ending",
+          "description": "A final paragraph that repeats the whole piece.",
+          "bad": "\"To recap, we covered A, B and C.\"",
+          "better": "End on the last point or the next action."
+        },
+        {
+          "id": "R-09",
+          "name": "Mic-drop ending",
+          "description": "A final \"deep\" one-liner.",
+          "bad": "\"The future isn't coming. It's already here.\"",
+          "better": "End on the clearest concrete sentence."
+        },
+        {
+          "id": "R-10",
+          "name": "Challenges and future outlook",
+          "description": "A formulaic \"Despite challenges, the future looks promising\" closer.",
+          "bad": "\"Despite these challenges, the outlook remains positive.\"",
+          "better": "Name the challenge and what is being done."
+        },
+        {
+          "id": "R-11",
+          "name": "Fake-unscripted scaffolding",
+          "description": "\"And honestly...\", \"And look...\", \"So yeah...\" used as filler.",
+          "bad": "\"And honestly? That's when it clicked.\"",
+          "better": "Say what clicked."
+        },
+        {
+          "id": "R-12",
+          "name": "Over-structured short answers",
+          "description": "A short reply split into sections with headers and bold labels.",
+          "bad": "A three-sentence answer with \"Overview\", \"Key Points\" and \"Conclusion\".",
+          "better": "Three sentences."
+        }
+      ]
+    },
+    {
+      "id": "imagery-and-metaphor",
+      "name": "Imagery and metaphor",
+      "intro": "AI likes making things vivid when they should be clear.",
+      "patterns": [
+        {
+          "id": "M-01",
+          "name": "Cute metaphors",
+          "description": "Abstract things doing human or physical actions.",
+          "bad": "\"Your data is whispering insights.\"",
+          "better": "\"Your data shows Tuesday posts get more replies.\""
+        },
+        {
+          "id": "M-02",
+          "name": "Things that \"live\" or \"sit\"",
+          "description": "Data, products or agents that live or sit somewhere.",
+          "bad": "\"where your customer data lives.\"",
+          "better": "\"where your customer data is stored.\""
+        },
+        {
+          "id": "M-03",
+          "name": "Honest dashboards",
+          "description": "Systems that \"get honest\", \"tell the truth\", \"hide\" or \"reveal\".",
+          "bad": "\"Analytics finally get honest.\"",
+          "better": "\"Analytics now count only real views.\""
+        },
+        {
+          "id": "M-04",
+          "name": "Mixed and stacked metaphors",
+          "description": "Two or three images in one sentence.",
+          "bad": "\"a north star that fuels the engine of growth.\"",
+          "better": "Drop both images and say what drives growth."
+        },
+        {
+          "id": "M-05",
+          "name": "Fuel and engine",
+          "description": "fuel, engine, rocket, catalyst, springboard, flywheel (as decoration).",
+          "bad": "\"content that fuels your growth engine.\"",
+          "better": "\"posts that bring in signups.\""
+        },
+        {
+          "id": "M-06",
+          "name": "Secret sauce",
+          "description": "secret sauce, magic, silver bullet, holy grail.",
+          "bad": "\"Consistency is the secret sauce.\"",
+          "better": "\"Accounts that posted weekly grew twice as fast.\""
+        }
+      ]
+    },
+    {
+      "id": "substance",
+      "name": "Substance",
+      "intro": "The deepest kind of slop: text that sounds informative and says nothing.",
+      "patterns": [
+        {
+          "id": "C-01",
+          "name": "Importance puffery",
+          "description": "Inflating significance: \"marks a pivotal moment\", \"a significant shift\".",
+          "bad": "\"This marks a pivotal moment for the industry.\"",
+          "better": "State the fact and let the reader judge."
+        },
+        {
+          "id": "C-02",
+          "name": "Vague attribution",
+          "description": "experts agree, studies show, many believe, it is widely regarded.",
+          "bad": "\"Studies show posting daily works.\"",
+          "better": "Name the study, or cut the claim."
+        },
+        {
+          "id": "C-03",
+          "name": "Generic claims without receipts",
+          "description": "Claims any company could make.",
+          "bad": "\"AI can transform your business.\"",
+          "better": "\"Our AI drafts a week of posts from a 3-line brief.\""
+        },
+        {
+          "id": "C-04",
+          "name": "The portability test",
+          "description": "A sentence that could move unchanged to another company or topic.",
+          "bad": "\"We're committed to delivering value to our customers.\"",
+          "better": "A sentence only you could write."
+        },
+        {
+          "id": "C-05",
+          "name": "Fake-profound wisdom",
+          "description": "Lines that sound deep and mean nothing concrete.",
+          "bad": "\"Growth is a mindset, not a metric.\"",
+          "better": "Say what you measure and why."
+        },
+        {
+          "id": "C-06",
+          "name": "Smoothing the specific",
+          "description": "Replacing a sharp fact with a generic description.",
+          "bad": "\"a leading expert in the field.\"",
+          "better": "\"who wrote the Kubernetes scheduler.\""
+        },
+        {
+          "id": "C-07",
+          "name": "Made-up specifics",
+          "description": "Invented numbers, names or examples presented as real.",
+          "bad": "\"Sarah, a marketing manager, saved 10 hours a week.\" (no Sarah exists)",
+          "better": "A real example, or none."
+        },
+        {
+          "id": "C-08",
+          "name": "Telling instead of showing",
+          "description": "Labeling something surprising, important or interesting.",
+          "bad": "\"Surprisingly, the simple version won.\"",
+          "better": "\"The simple version got twice the clicks.\""
+        },
+        {
+          "id": "C-09",
+          "name": "Canned notability",
+          "description": "\"featured in top outlets\", \"widely recognized\", \"has an active social media presence\".",
+          "bad": "\"She has been featured in numerous leading publications.\"",
+          "better": "Name one, with a link."
+        },
+        {
+          "id": "C-10",
+          "name": "Superficial balance",
+          "description": "Every point gets a \"however\" so the text never commits.",
+          "bad": "\"AI is powerful. However, it has limitations.\"",
+          "better": "Say which limitation matters for this reader."
+        },
+        {
+          "id": "C-11",
+          "name": "Advice with no steps",
+          "description": "Telling the reader to \"optimize\", \"be strategic\" or \"stay consistent\" without saying how.",
+          "bad": "\"Optimize your posting schedule.\"",
+          "better": "\"Post Tuesday to Thursday between 8 and 10am.\""
+        },
+        {
+          "id": "C-12",
+          "name": "Hollow promises",
+          "description": "\"Everything you need to know\", \"the ultimate guide\", \"master X in minutes\".",
+          "bad": "\"The ultimate guide to LinkedIn.\"",
+          "better": "\"How to write a LinkedIn post that gets replies.\""
+        }
+      ]
+    },
+    {
+      "id": "formatting-and-punctuation",
+      "name": "Formatting and punctuation",
+      "intro": "",
+      "patterns": [
+        {
+          "id": "F-01",
+          "name": "Em dash habit",
+          "description": "Em dashes used everywhere for rhythm.",
+          "bad": "\"It's fast — really fast — and free.\"",
+          "better": "\"It's fast and free.\" Use commas, periods or parentheses."
+        },
+        {
+          "id": "F-02",
+          "name": "Bold sprinkled mid-sentence",
+          "description": "Random words in bold for emphasis.",
+          "bad": "\"This is **really important** for **growth**.\"",
+          "better": "No bold; let the sentence carry it."
+        },
+        {
+          "id": "F-03",
+          "name": "Emoji as bullets",
+          "description": "✅ 🚀 💡 👉 used as list markers or decoration.",
+          "bad": "\"✅ Faster ✅ Cheaper ✅ Better\"",
+          "better": "A plain sentence."
+        },
+        {
+          "id": "F-04",
+          "name": "Title Case Headings",
+          "description": "Every Word Capitalized In Headings.",
+          "bad": "\"How To Grow Your Audience On LinkedIn\"",
+          "better": "\"How to grow your audience on LinkedIn\""
+        },
+        {
+          "id": "F-05",
+          "name": "Colon-label lines",
+          "description": "Every line starts with a bold label and a colon.",
+          "bad": "\"**Speed:** fast. **Price:** low. **Support:** great.\"",
+          "better": "A sentence about the one that matters."
+        },
+        {
+          "id": "F-06",
+          "name": "Markdown in the wrong place",
+          "description": "Asterisks, hashtags or headers pasted into emails, posts or forms.",
+          "bad": "\"**Subject:** ...\" inside a LinkedIn post.",
+          "better": "Plain text."
+        },
+        {
+          "id": "F-07",
+          "name": "Curly-quote and character mix",
+          "description": "Curly quotes, special dashes and non-breaking spaces mixed with plain text.",
+          "bad": "“quotes” next to \"quotes\" in one paragraph.",
+          "better": "Pick one style."
+        },
+        {
+          "id": "F-08",
+          "name": "Exclamation inflation",
+          "description": "Exclamation marks on ordinary sentences.",
+          "bad": "\"We updated the settings page!\"",
+          "better": "\"We updated the settings page.\""
+        },
+        {
+          "id": "F-09",
+          "name": "Unicode bold and fancy fonts in long posts",
+          "description": "𝗕𝗼𝗹𝗱 or 𝓈𝒸𝓇𝒾𝓅𝓉 letters across whole lines.",
+          "bad": "An entire LinkedIn post in Unicode bold.",
+          "better": "Plain text, one bold phrase at most (screen readers can't read these)."
+        },
+        {
+          "id": "F-10",
+          "name": "Tables for two facts",
+          "description": "A table where a sentence would do.",
+          "bad": "A 2x2 table comparing price and speed.",
+          "better": "\"A is cheaper; B is faster.\""
+        }
+      ]
+    },
+    {
+      "id": "chatbot-residue",
+      "name": "Chatbot residue",
+      "intro": "Text that was clearly copied out of a chat window.",
+      "patterns": [
+        {
+          "id": "B-01",
+          "name": "Assistant openers",
+          "description": "Certainly!, Absolutely!, Great question!, Of course!",
+          "bad": "\"Certainly! Here's a LinkedIn post about...\"",
+          "better": "Delete it."
+        },
+        {
+          "id": "B-02",
+          "name": "Sycophancy",
+          "description": "You're absolutely right, what a great idea, I love this.",
+          "bad": "An email reply starting \"Great point, you're absolutely right!\"",
+          "better": "Answer the point."
+        },
+        {
+          "id": "B-03",
+          "name": "Offer to do more",
+          "description": "Would you like me to..., Let me know if you'd like a shorter version.",
+          "bad": "A published post ending \"Would you like me to adjust the tone?\"",
+          "better": "Delete it."
+        },
+        {
+          "id": "B-04",
+          "name": "Here is a...",
+          "description": "Lead-ins like \"Here is a polished version of your post:\" left in the final text.",
+          "bad": null,
+          "better": "Delete the line."
+        },
+        {
+          "id": "B-05",
+          "name": "Placeholder text",
+          "description": "[Your Name], [Company], [insert statistic], XX%.",
+          "bad": null,
+          "better": "Fill it in or cut the sentence."
+        },
+        {
+          "id": "B-06",
+          "name": "AI disclaimers",
+          "description": "As an AI, I don't have personal opinions; my knowledge is limited to...",
+          "bad": null,
+          "better": "Delete it."
+        },
+        {
+          "id": "B-07",
+          "name": "Source hedging",
+          "description": "\"Based on available information\", \"specific details are limited\".",
+          "bad": "\"While specific figures are not widely available, ...\"",
+          "better": "Find the figure or don't mention it."
+        },
+        {
+          "id": "B-08",
+          "name": "Citation debris",
+          "description": "Leftover markers like [1], contentReference, oaicite, turn0search0.",
+          "bad": null,
+          "better": "Remove them, and check the claim they were attached to."
+        }
+      ]
+    },
+    {
+      "id": "social-media-and-linkedin",
+      "name": "Social media and LinkedIn",
+      "intro": "Patterns that turn a post into \"LinkedIn slop\".",
+      "patterns": [
+        {
+          "id": "L-01",
+          "name": "Broetry",
+          "description": "One sentence per line, top to bottom.",
+          "bad": "A 20-line post where every line is a new sentence.",
+          "better": "Short paragraphs."
+        },
+        {
+          "id": "L-02",
+          "name": "Hook formulas",
+          "description": "\"I was fired. Best thing that ever happened.\", \"Unpopular opinion:\", \"Stop doing X.\"",
+          "bad": null,
+          "better": "Open with the specific thing that happened or the specific claim."
+        },
+        {
+          "id": "L-03",
+          "name": "Thrilled to announce",
+          "description": "I'm thrilled/excited/humbled to announce, I'm proud to share.",
+          "bad": "\"I'm thrilled to announce I've joined Acme!\"",
+          "better": "\"I joined Acme to lead the growth team.\""
+        },
+        {
+          "id": "L-04",
+          "name": "Read that again",
+          "description": "Read that again., Let that sink in., I'll say it louder.",
+          "bad": null,
+          "better": "Delete it. If the line needs a second read, rewrite it."
+        },
+        {
+          "id": "L-05",
+          "name": "Agree? / Thoughts?",
+          "description": "Engagement-bait closers.",
+          "bad": "\"Agree? 👇\"",
+          "better": "Ask a real question, or don't."
+        },
+        {
+          "id": "L-06",
+          "name": "The lesson list",
+          "description": "\"Here are 7 lessons I learned from...\" with generic lessons.",
+          "bad": null,
+          "better": "One lesson with the story behind it."
+        },
+        {
+          "id": "L-07",
+          "name": "Humblebrag setup",
+          "description": "\"I don't usually post this, but...\", \"This might be controversial, but...\"",
+          "bad": null,
+          "better": "Post it without the preamble."
+        },
+        {
+          "id": "L-08",
+          "name": "Thread markers",
+          "description": "🧵, 1/, \"A thread\" on content that isn't a thread.",
+          "bad": null,
+          "better": "Write the post."
+        },
+        {
+          "id": "L-09",
+          "name": "Hashtag walls",
+          "description": "Ten or more hashtags at the end.",
+          "bad": null,
+          "better": "Three relevant ones, or none."
+        },
+        {
+          "id": "L-10",
+          "name": "That's it. That's the post",
+          "description": "Self-aware closers that announce the ending.",
+          "bad": "\"That's it. That's the tweet.\"",
+          "better": "Just stop."
+        },
+        {
+          "id": "L-11",
+          "name": "P.S. engagement",
+          "description": "\"P.S. Repost ♻️ if this helped.\" on every post.",
+          "bad": null,
+          "better": "Drop it, or use it rarely."
+        },
+        {
+          "id": "L-12",
+          "name": "No fluff, just value",
+          "description": "Announcing quality instead of delivering it: no fluff, just value; straight to the point; real talk.",
+          "bad": null,
+          "better": "Delete the announcement."
+        },
+        {
+          "id": "L-13",
+          "name": "Comment slop",
+          "description": "Generic replies: \"Great insights!\", \"So true!\", \"Thanks for sharing, this is gold.\"",
+          "bad": null,
+          "better": "Reply to something specific in the post, or don't reply."
+        },
+        {
+          "id": "L-14",
+          "name": "Fake vulnerability arc",
+          "description": "\"I failed. I was broke. Then I discovered X.\" built to sell.",
+          "bad": null,
+          "better": "Tell what happened, with dates and numbers."
+        },
+        {
+          "id": "L-15",
+          "name": "Contrarian template",
+          "description": "\"Everyone says X. They're wrong.\"",
+          "bad": null,
+          "better": "Make your claim and back it up; skip the strawman."
+        }
+      ]
+    }
+  ]
+}

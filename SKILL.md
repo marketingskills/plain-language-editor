@@ -196,47 +196,34 @@ AI drafts often assert something on page 1 and quietly undercut it on page 3. Re
 - If the method or scope is stated more than once, the statements must match exactly.
 - Surface every contradiction you find to the author rather than silently picking one.
 
-## A second pass: strip AI-slop surface patterns
+## A second pass: editorial pattern audit
 
-The seven moves above are the method. Do them first, fully, before this. They fix the things that make a document hard to understand or hard to trust. Once the spine is clear, sentences parse, and claims check out, run this lighter second pass to catch the word choices and sentence tics that mark a paragraph as machine-written even after the content itself is sound.
+The seven moves above are the priority. Once the meaning, structure, claims and contradictions are sound, check how the text *sounds*. Use the complete, ID-stable **120-pattern catalogue** in [references/ai-slop-patterns.md](references/ai-slop-patterns.md). It is generated from [patterns/ai-slop.json](patterns/ai-slop.json), adapted with attribution from FeedHive's MIT-licensed AI Slop Detector.
 
-### Preserve the writer's real voice while you strip these
+**Read the full reference when it is available** before a requested full audit or final second pass. It covers vocabulary (V), stock phrases (P), sentence patterns (S), structure and rhythm (R), metaphors (M), substance (C), formatting (F), chatbot residue (B) and social/LinkedIn habits (L). Do not claim to have checked all 120 if you cannot read the reference. In a standalone SKILL.md-only installation, use the essentials below and explicitly describe the review as limited.
 
-Cutting surface tics is not the same as flattening the piece into generic polished prose. Before you touch a sentence, notice the draft's vocabulary, cadence, bluntness, humor, uncertainty, and digressions. Keep whatever is genuinely the writer's, even where it brushes against a rule below.
+### Preserve the writer's real voice
 
-- Make the **minimum effective edit**. Fix the patterns below, don't rewrite a line just to make every paragraph equally tidy.
-- Keep "I think," "maybe," "honestly," a swear word, a joke, or a personal aside when it carries real uncertainty, character, or the writer's spoken rhythm. Cut it only when it's empty filler.
-- Preserve structure and digressions unless they're actively hurting the piece. If you do reorganize, say why when you report back.
-- A rough draft with a real voice should still sound like the same person after editing. Would the writer recognize the rewrite as their own?
+Before editing, identify 3-5 genuine signals of voice: vocabulary, cadence, bluntness, humour, uncertainty, personal asides or digressions. Preserve them. Apply the *minimum effective edit*. Do not force every paragraph into the same tidy style, and do not replace real details with generic polish. Keep natural uses of "I think", "maybe", jokes and mild swearing when they carry meaning. The author should recognise the final draft as their own.
 
-### Words to cut
+### How to apply a pattern
 
-Banned outright: delve, foster, leverage, utilize, facilitate, empower, streamline, robust, cutting-edge, paradigm shift, game changer, this is huge, this changes everything, tapestry, realm, beacon, multifaceted, meticulous, intricate, paramount, transformative, elevate, embark, supercharge, harness, ever-evolving.
+- **Clear residue or error:** remove leftover assistant introductions, user-facing instructions, citation debris, placeholders and unsupported made-up details. Always verify what a removed citation was meant to support.
+- **Likely cliché:** rework puffery, hollow claims, dramatic colon reveals, "not X but Y" formulas, empty intros, mic-drop endings and stock sales language. State the concrete point.
+- **Context-dependent signal:** a rhetorical question, rule of three, metaphor, short paragraph, bold emphasis, or technical word may be exactly right. Keep it if it improves communication or carries the author's voice.
+- **Cluster priority:** multiple patterns in one paragraph, or the same habit throughout a document, matter more than an isolated example. Review those first. Never declare text AI-written on this basis.
+- **Fact priority:** no rewrite may invent a statistic, source, actor, cause, outcome, guarantee or quotation. If removing a cliché would obscure the fact, preserve the fact and explain the choice.
+- **Existing house style:** the separate "Never use em dashes" rule below still applies to revised copy. Do not turn the other 119 patterns into absolute bans.
 
-Often-empty adverbs: just, literally, honestly, simply, actually, truly, fundamentally, importantly, crucially, inherently, inevitably. Cut them when they add nothing. Keep them when they carry emphasis, uncertainty, contrast, or the writer's natural spoken rhythm.
+High-value checks even without the full reference: chatbot preambles and sign-offs (B), vague assertions and invented specifics (C), repeated one-line paragraphs and identical sentence rhythms (R), dramatic question-and-answer or false contrasts (S), overloaded jargon and inflated verbs (V/P), decorative formatting (F), and social-media engagement bait (L).
 
-Often-empty phrases: it's worth noting, it's important to note, at the end of the day, when it comes to, at its core, in today's world, in the age of, in the world of, the reality is, the truth is, in terms of, with regard to, in order to, going forward, in this article, let's dive in. Cut them when they delay the point. Keep an occasional one when it's part of the writer's recognizable voice and the sentence still earns its place.
+### Optional deterministic preflight
 
-### AI patterns to cut
+If Node.js and this repository's files are available, run `node scripts/audit.mjs draft.md` (or `node scripts/audit.mjs --stdin --json`). This checks a deliberately narrow set of high-confidence *surface* patterns, using source IDs and exact line excerpts. It is neither a comprehensive 120-pattern check nor a probability of AI authorship. Follow it with your own editorial review of the full reference, especially for meaning, rhythm, metaphors, unsupported claims and false positives.
 
-These are surface-level tells, distinct from the meta-comments in move 2 and the claim problems in move 6. Cut them wherever they appear.
+### Detect-only mode: quote, don't rewrite
 
-- **Binary contrasts.** "This is not X. It's Y." / "The question isn't X, it's Y." State Y directly. "The question isn't the model. It's the eval." becomes "The eval matters more than the model."
-- **Throat-clearing openers.** "Here's the thing," "Let me be clear," "The uncomfortable truth is." Cut and state the point.
-- **Faux-insight setups.** "This is the part most people skip," "Here's what nobody tells you." These flatter the writer as the lone expert. Cut the setup, let the claim stand alone.
-- **Colon reveals.** A noun phrase, a colon, a lowercase dramatic reveal: "The best part: it learns." Rewrite as a plain sentence. Use colons for lists, labels, and quotes, not fake drama.
-- **Superficial analysis.** Trailing `-ing` clauses that pretend to explain meaning: "highlighting," "underscoring," "reflecting." "The launch adds file search, highlighting the team's commitment" becomes "The launch adds file search, so users can find old drafts faster."
-- **Importance puffery.** "Stands as a testament," "marks a pivotal moment," "underscores its significance." State the fact, let the reader judge.
-- **Weasel attribution.** "Experts agree," "studies show," "widely regarded as." Name the source or cut the claim; don't invent one.
-- **Fake-strong verbs.** Prefer "is" and "has" when clearer. "Serves as a centralized hub for sponsor management" becomes "Tracks sponsors, drafts, due dates, and approvals in one place."
-- **Synonym cycling.** If the clear word is right, repeat it instead of rotating terms for style.
-- **Negative listing.** "Not a X. Not a Y. A Z." Just say Z.
-- **Dramatic fragmentation.** "X. And Y. And Z." or "That's it. That's the whole thing." Use complete sentences.
-- **Robotic rhythm.** Repeated sentence shapes, identical paragraph structures, stacked punchy fragments. Vary the shape only when it helps the point.
-- **Rhetorical setups.** "What if I told you...", "Plot twist:", self-answered "Question? Answer." pairs. Drop them, make the point.
-- **Fake-profound kickers.** Cut a final "deep" line that turns the point into a cute metaphor or mic-drop sentence. Do not rewrite it into a better metaphor; delete it and end on the clearest concrete sentence already in the draft.
-- **Summary-recap endings.** "In conclusion," "Ultimately," a final paragraph that restates the piece. The reader was just there; end on the last concrete point or next action.
-- **Formatting slop.** Emoji in headings, bold sprinkled mid-sentence, bullet lists where two sentences of prose would read better, headers over two-sentence sections.
+When the user asks for an AI-slop audit without a rewrite, do **not** run the full editing output format. Instead give actionable findings, grouped by severity or repeated clusters, with **pattern ID + name, exact excerpt (and line when available), why it hurts this text, and a concrete, meaning-preserving fix**. Distinguish contextual suggestions from clear defects. Report uncertainty where a line might be appropriate. Do not score the draft, claim to identify AI authorship, invent evidence, or silently rewrite it.
 
 ## Plain-language word swaps
 
@@ -279,14 +266,14 @@ This applies to en dashes used as sentence punctuation too. (En dashes are fine 
 
 ## Process
 
-Default job is **edit**: the user shares a draft, you fix it and return the rewrite. If the user instead asks whether a piece is AI slop, or asks to audit/scan/flag it without rewriting, that's **detect**: name each pattern from the second pass that appears, quote the line, give the fix in a few words, and stop, don't rewrite, score, or guess whether AI wrote it. Offer to edit afterward.
+Default job is **edit**: the user shares a draft, you fix it and return the rewrite. If the user asks to audit/scan/flag a draft without rewriting, that's **detect**: follow the detect-only mode above. Neither mode guesses whether AI wrote it.
 
 For an edit:
 
 1. **Read the whole text first.** Don't edit yet. Find the spine (move 1), note contradictions (move 7), and note 3-5 voice signals to protect (vocabulary, cadence, bluntness, humor, digressions).
 2. **Present the outline you found** as plain dot points, plus your honest read on length ("this can lose about half"). If you couldn't find a spine, say that before going further.
 3. **Run the seven moves top to bottom first.** They are the primary pass: comprehension, subject/verb clarity, jargon, parsing, truth, consistency.
-4. **Then run the second pass**: strip the words and AI-slop patterns above, while protecting the voice signals from step 1.
+4. **Then run the second pass**: read the full generated pattern reference when available; find actionable patterns and clusters without treating every example as a ban. Preserve the voice signals from step 1. An optional CLI preflight cannot replace this editorial review.
 5. **List every claim you couldn't verify and every contradiction you found** as questions for the author. Do not silently resolve them.
 6. **Re-read the result aloud** (move 5). Fix anything you stumble on, and check it still sounds like the same person who wrote the draft.
 7. **Report what you cut and why**, especially big structural cuts, so the author can push back.
@@ -302,7 +289,7 @@ Provide, in this order:
 5. **Contradictions found**: anything the document said in two incompatible ways.
 6. **What I cut**: short list of the meta-comments, AI patterns, padding, and sections removed, so nothing vanishes silently. Note if any structural reorganizing happened and why.
 
-For a detect request, skip this format and return the findings report described under Process instead.
+For a detect request, skip this format and return the exact-excerpt, pattern-ID findings report described under Detect-only mode instead.
 
 ## Full example
 
